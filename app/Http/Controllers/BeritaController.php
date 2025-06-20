@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 class BeritaController extends Controller
 {
     public function index()
-    {
-        return response()->json(Berita::latest()->get());
-    }
-
-    public function show($slug)
 {
-    return response()->json(
-        Berita::where('slug', $slug)->firstOrFail()
-    );
+    return Berita::all(); // atau pakai resource jika mau rapi
 }
+
+public function show($slug)
+{
+    $berita = Berita::where('slug', $slug)->firstOrFail();
+    return response()->json($berita);
+}
+
 }
